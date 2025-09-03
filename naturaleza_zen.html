@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naturaleza Zen - @Alitai</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+</head>
+<body class="font-sans text-gray-800 bg-white">
+
+  <!-- HEADER -->
+  <header class="bg-gray-100 text-center py-6 shadow">
+    <h1 class="text-3xl font-bold">"Naturaleza Zen"</h1>
+    <p class="text-gray-600 italic">por @Alitai</p>
+  </header>
+
+  <!-- FICHA DE LA SERIE -->
+  <section class="max-w-3xl mx-auto py-10 px-6 text-center">
+    <h2 class="text-lg font-semibold mb-4 text-left">
+      <bold>Fecha: 2024-2025</bold> <br>
+      <bold>Técnica: Pintura acrílica sobre madera</bold> <br>
+      <bold>Obras: 3 paisajes en pequeño formato</bold>
+    </h2>
+    <p class="leading-relaxed text-justify">
+      "Naturaleza Zen" es una serie de pinturas que exploran la serenidad y la
+      simplicidad de los paisajes naturales a través de la técnica del acrílico sobre madera.
+      Cada obra captura un momento de calma y reflexión, invitando al espectador a
+      conectar con la esencia tranquila de la naturaleza.
+    </p>
+  </section>
+
+  <!-- SLIDER DE OBRAS -->
+  <section class="max-w-4xl mx-auto py-10 px-6">
+    <h2 class="text-2xl font-semibold text-center mb-6">Obras de la serie</h2>
+
+    <!-- Contenedor Swiper -->
+    <div class="swiper">
+      <div class="swiper-wrapper">
+
+        <!-- Slide 1 -->
+        <div class="swiper-slide text-center p-4"> 
+          <div class="w-full max-w-md mx-auto h-112 flex items-center justify-center bg-gray-100 rounded-lg shadow-inner"> 
+          <img src="images/series/naturaleza_zen/bosque_zen.jpg" alt="Bosque Zen" 
+              class="object-contain max-h-full max-w-full">
+          </div>        
+          <h3 class="text-xl font-bold mt-4">Bosque Zen</h3>
+          <p class="text-gray-600 italic">DM 26x38cm – Acrílico/ Año 2024</p>
+          <p class="mt-2 mb-2 text-sm text-justify">
+            Bosque zen nos introduce en un espacio de contemplación donde 
+            la fuerza del sol enmarcado por la desnudez de los árboles, 
+            abre un horizonte de calma y plenitud. 
+            Los colores vibran entre rosados, lilas y azules, 
+            evocando entre lo efímero y lo eterno. 
+            La obra propone un estado de silencio interior, 
+            como un jardín meditativo en el que la naturaleza revela su equilibrio sagrado.
+            Un lugar donde el tiempo se suspende y sólo queda el pulso de la naturaleza
+             resonando en el interior.
+          </p>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide text-center p-4"> 
+          <div class="w-full max-w-md mx-auto h-112 flex items-center justify-center bg-gray-100 rounded-lg shadow-inner"> 
+          <img src="images/series/naturaleza_zen/jardin_zen.jpg" alt="Jardín Zen" 
+              class="object-contain max-h-full max-w-full">
+          </div>        
+          <h3 class="text-xl font-bold mt-4">Jardin Zen</h3>
+          <p class="text-gray-600 italic">DM 26x38cm – Acrílico / Año 2024</p>
+          <p class="mt-2 text-sm text-justify">
+            Jardín zen nace de la contemplación de los nenúfares de Monet 
+            pero se abre hacia un lenguaje propio donde el color y 
+            la forma vibran con intensidad y la calma se vuelve presencia viva. 
+            Los lotos flotan como símbolos de pureza y renacimiento en un espacio 
+            que invita a la meditación y a la pausa interior. 
+            Esta obra es un puente entre el legado impresionista y la búsqueda contemporánea 
+            de armonía espiritual. 
+          </p>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide text-center p-4"> 
+          <div class="w-full max-w-md mx-auto h-112 flex items-center justify-center bg-gray-100 rounded-lg shadow-inner"> 
+          <img src="images/series/naturaleza_zen/jardin_deseos.jpg" alt="El Jardín de los Deseos" 
+              class="object-contain max-h-full max-w-full">
+          </div>        
+          <h3 class="text-xl font-bold mt-4">El Jardin De Los Deseos</h3>
+          <p class="text-gray-600 italic">DM 26x38cm – Acrílico/ Año 2025</p>
+          <p class="mt-2 mb-2 text-sm text-justify">
+            “Cuando era niña atrapaba los panaderos y pedía deseos y los hacía volar alto”.<br> 
+            Los panaderos (diente de león) como portadores de sueños y la 
+            inocencia del acto de pedir y soltar evoca la infancia y los rituales simples: 
+            atrapar un panadero, soplar con fuerza y dejar que el viento lleve nuestros anhelos. 
+            La obra convierte ese gesto inocente en un paisaje interior donde los sueños flotan, 
+            se dispersan y germinan en el aire. Es un homenaje a la esperanza, 
+            a la ligereza de lo efímero y a la fe en que cada deseo puede volar alto y hacerse realidad.
+          </p>
+        </div>
+
+      </div>
+      
+      <!-- Paginación -->
+      <div class="swiper-pagination mt-12"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-100 text-center py-6 mt-12">
+    <a href="index.html" class="text-blue-600 hover:underline">← Volver al portfolio</a>
+  </footer>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADN Estelar - @Alitai</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+</head>
+<body class="font-sans text-gray-800 bg-white">
+
+  <!-- HEADER -->
+  <header class="bg-gray-100 text-center py-6 shadow">
+    <h1 class="text-3xl font-bold">"ADN Estelar"</h1>
+    <p class="text-gray-600 italic">por @Alitai</p>
+  </header>
+
+  <!-- FICHA DE LA SERIE -->
+  <section class="max-w-3xl mx-auto py-10 px-6 text-center">
+    <h2 class="text-lg font-semibold mb-4 text-left">
+      <bold>Fecha: 2025</bold> <br>
+      <bold>Técnica: Pintura acrílica sobre madera</bold> <br>
+      <bold>Obras: 2 retratos y 2 paisajes oníricos</bold>
+    </h2>
+    <p class="leading-relaxed text-justify">
+    "ADN Estelar" indaga en la memoria cósmica inscrita en el ser humano. 
+    A través de retratos y paisajes oníricos, se entrelazan lo ancestral y lo sideral, 
+    lo oceánico y lo mítico.
+    Los personajes y escenarios emergen como vestigios de civilizaciones perdidas y 
+    guardianes de un linaje estelar latente, evocando la tensión entre lo terrenal y lo universal.
+    Cada obra funciona como un portal: un gesto pictórico que conecta 
+    el origen con la promesa, invitando al espectador a reconocer en sí mismo 
+    la huella de lo infinito.
+        </p>
+  </section>
+
+  <!-- SLIDER DE OBRAS -->
+  <section class="max-w-4xl mx-auto py-10 px-6">
+    <h2 class="text-2xl font-semibold text-center mb-6">Obras de la serie</h2>
+
+    <!-- Contenedor Swiper -->
+    <div class="swiper">
+      <div class="swiper-wrapper">
+
+        <!-- Slide 1 -->
+        <div class="swiper-slide text-center p-4"> 
+          <div class="w-full max-w-md mx-auto h-112 flex items-center justify-center bg-gray-100 rounded-lg shadow-inner"> 
+          <img src="images/series/adn_estelar/guardian_esferas.jpg" alt="El Guardián de las Esferas" 
+              class="object-contain max-h-full max-w-full">
+          </div>        
+          <h3 class="text-xl font-bold mt-4">El Guardián de las Esferas</h3>
+          <p class="text-gray-600 italic">DM 37x47cm – Acrílico/ Año 2025</p>
+          <p class="mt-2 mb-2 text-sm text-justify">
+            En esta pieza de la serie ADN estelar represento el arquetipo masculino 
+            cargado de resonancias míticas y cósmicas. 
+            El perfil trabajado en una paleta vibrante de azules, naranjas y verdes, 
+            se convierte en un cuerpo atravesado por energías elementales: 
+            agua, fuego y aire que confluyen en su fisonomía.
+            Detrás del rostro flotan esferas que surgen de astros o de memorias solares, 
+            orbitando como símbolos de un linaje perdido. 
+            La composición segmentada de colores intensos, 
+            refuerza la tensión entre lo humano y lo universal, lo terrenal y lo sideral. 
+            El personaje se erige como guardián de la memoria estelar, 
+            un vestigio de la Atlántida y de civilizaciones arcaicas que según mi creencia 
+            aún laten en la estructura profunda del ser humano. 
+            La obra se inscribe en la exploración de ADN estelar como serie: 
+            un viaje pictórico que conecta lo ancestral, lo oceánico y lo cósmico 
+            en un mismo gesto visual. 
+            Su rostro mira hacia el horizonte desconocido, 
+            como quien custodia un secreto que aún no debe ser revelado. 
+            En su silencio hay viaje, origen y promesa. 
+            Él es el guardián de la memoria estelar. 
+          </p>
+        </div>
+
+        
+
+      </div>
+      
+      <!-- Paginación -->
+      <div class="swiper-pagination mt-12"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-100 text-center py-6 mt-12">
+    <a href="index.html" class="text-blue-600 hover:underline">← Volver al portfolio</a>
+  </footer>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  </script>
+
+</body>
+</html>
