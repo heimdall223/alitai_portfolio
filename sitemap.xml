@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>https://www.alitai.com.ar/index</loc>
+      <lastmod>2025-09-08</lastmod>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://www.alitai.com.ar/arquetipos</loc>
+      <lastmod>2025-09-07</lastmod>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://www.alitai.com.ar/naturaleza_zen</loc>
+      <lastmod>2025-09-06</lastmod>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://www.alitai.com.ar/adn_estelar</loc>
+      <lastmod>2025-09-05</lastmod>
+      <priority>0.8</priority>
+   </url>
+</urlset>
