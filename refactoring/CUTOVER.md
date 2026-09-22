@@ -1,60 +1,33 @@
 # Cutover a GitHub Pages (Actions)
 
-## Estado actual (mientras DNS custom no esté listo)
+## Estado actual (dominio custom activo)
 
-- URL pública de prueba: `https://heimdall223.github.io/alitai_portfolio/`
-- En `astro.config.mjs`: `site: 'https://heimdall223.github.io'` + `base: '/alitai_portfolio/'`
-- El archivo `CNAME` está aparcado en [`CNAME.pending`](CNAME.pending) para que Pages **no** redirija a un dominio DNS roto (eso dejaba el sitio inaccesible o sin estilos).
+- URL canónica: `https://alitai.com.ar`
+- En `astro.config.mjs`: `site: 'https://alitai.com.ar'` + `base: '/'`
+- `public/CNAME` = `alitai.com.ar`
 
-## Qué cambió en el refactor
+La URL `https://heimdall223.github.io/alitai_portfolio/` puede verse sin estilos: es normal con `base: '/'` (los assets no usan el prefijo del repo). Preferí el dominio custom.
 
-- El sitio se genera con `npm run build` → `dist/`.
-- El workflow [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml) publica `dist/` en Pages.
+## Deploy
 
-## Pasos en GitHub (Actions)
+1. Repo → **Settings** → **Pages** → Source: **GitHub Actions**
+2. Custom domain: `alitai.com.ar` + Enforce HTTPS cuando el certificado esté listo
+3. Push a `main` → workflow **Deploy to GitHub Pages**
 
-1. Repo → **Settings** → **Pages**.
-2. **Build and deployment** → Source: **GitHub Actions**.
-3. **Custom domain:** dejalo **vacío** hasta que el DNS de `alitai.com.ar` esté bien.
-4. Push a `main` o **Actions** → Deploy to GitHub Pages → Run workflow.
-5. Verificá: `https://heimdall223.github.io/alitai_portfolio/` (con CSS e imágenes).
+## Si el dominio muestra texto sin CSS
 
-## Cuando reactive `alitai.com.ar`
+Causa típica: el build se publicó con `base: '/alitai_portfolio/'` mientras el dominio sirve en la raíz. Solución: `base: '/'`, `site: 'https://alitai.com.ar'`, redeploy.
 
-### DNS (registrador del dominio)
+## DNS (referencia)
 
-Para **apex** `alitai.com.ar` (recomendado, coincide con el CNAME histórico):
+Apex `alitai.com.ar` → registros **A** a las IPs de GitHub Pages (ver [docs](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)).
 
-- Registros **A** hacia las IPs de GitHub Pages (consultar [docs actuales](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)):
-  - `185.199.108.153`
-  - `185.199.109.153`
-  - `185.199.110.153`
-  - `185.199.111.153`
-- Opcional **www**: CNAME `www` → `heimdall223.github.io`
-
-### En el repo (después de que el DNS responda bien)
-
-1. Copiá `refactoring/CNAME.pending` → `public/CNAME` (contenido: `alitai.com.ar`).
-2. En `astro.config.mjs` cambiá a:
-
-```js
-site: 'https://alitai.com.ar',
-base: '/',
-```
-
-3. Regenerá redirects: `node scripts/write-legacy-redirects.mjs` (ajustá `BASE` a `''` o `/` en el script si hace falta).
-4. Commit, push a `main`, esperá el Action.
-5. Pages → Custom domain: `alitai.com.ar` → esperá el certificado → Enforce HTTPS.
-
-### Por qué hay que quitar `base` al usar el dominio
-
-Con dominio custom, GitHub sirve el sitio en la **raíz** (`https://alitai.com.ar/`). Con `base: '/alitai_portfolio/'` los CSS quedarían en una ruta incorrecta.
+Opcional `www` → CNAME a `heimdall223.github.io`.
 
 ## Rollback
 
-1. Pages → Source: **Deploy from a branch** solo si restaurás HTML legacy.
-2. HTML anterior: [`legacy/`](legacy/).
+HTML anterior en [`legacy/`](legacy/). Copia de respaldo del CNAME: [`CNAME.pending`](CNAME.pending).
 
 ## Redirects legacy
 
-Archivos en `public/` (`arquetipos.html`, etc.) redirigen a `/alitai_portfolio/series/<slug>/` mientras el `base` del proyecto esté activo.
+`public/*.html` y `public/<slug>/` redirigen a `/series/<slug>/`.
