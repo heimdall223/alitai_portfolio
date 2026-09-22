@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const BASE = '/alitai_portfolio';
+/** Empty string = custom domain at root. Use '/alitai_portfolio' only for github.io project URL. */
+const BASE = '';
 const slugs = [
   'arquetipos',
   'naturaleza_zen',
@@ -30,4 +31,4 @@ for (const slug of slugs) {
   fs.writeFileSync(path.join('public', slug, 'index.html'), html);
 }
 
-console.log(`Wrote redirects for ${slugs.length} series (base ${BASE})`);
+console.log(`Wrote redirects for ${slugs.length} series (base "${BASE || '/'}")`);
