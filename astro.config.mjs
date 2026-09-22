@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 /**
  * Custom domain serves the project site at domain root (no /alitai_portfolio prefix).
  * Keep base: '/' while alitai.com.ar is the canonical URL.
- * See refactoring/CUTOVER.md
+ * See docs/refactoring/CUTOVER.md
  */
 // https://astro.build/config
 export default defineConfig({
