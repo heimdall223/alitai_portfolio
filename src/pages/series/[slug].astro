@@ -7,6 +7,7 @@ import {
   getSiteSettings,
   getWorksForSeries,
 } from '../../lib/content';
+import { withBase } from '../../lib/paths';
 
 export async function getStaticPaths() {
   const seriesList = await getPublishedSeries();
@@ -54,6 +55,6 @@ const handle = settings.handle;
   </section>
 
   <footer class="bg-gray-100 text-center py-6 mt-12">
-    <a href="/" class="text-blue-600 hover:underline">← Volver al portfolio</a>
+    <a href={withBase('/')} class="text-blue-600 hover:underline">← Volver al portfolio</a>
   </footer>
 </BaseLayout>

@@ -10,6 +10,7 @@ import {
   getPublishedSeries,
   getSiteSettings,
 } from '../lib/content';
+import { withBase } from '../lib/paths';
 
 const settings = await getSiteSettings();
 const seriesList = await getPublishedSeries();
@@ -25,7 +26,7 @@ const exhibitions = await getExhibitions();
 
   <section class="flex justify-center py-10 bg-white">
     <img
-      src={settings.portrait}
+      src={withBase(settings.portrait)}
       alt={settings.portraitAlt}
       class="max-w-lg w-full rounded-lg shadow-lg"
       width="512"
@@ -55,8 +56,8 @@ const exhibitions = await getExhibitions();
         seriesList.map((entry) => (
           <SeriesCard
             title={entry.data.title}
-            href={`/series/${entry.id}/`}
-            cover={entry.data.cover}
+            href={withBase(`/series/${entry.id}/`)}
+            cover={withBase(entry.data.cover)}
           />
         ))
       }
@@ -70,8 +71,8 @@ const exhibitions = await getExhibitions();
         exhibitions.map((entry) => (
           <ExhibitionCard
             title={entry.data.title}
-            thumb={entry.data.thumb}
-            fullImage={entry.data.fullImage}
+            thumb={withBase(entry.data.thumb)}
+            fullImage={withBase(entry.data.fullImage)}
           />
         ))
       }
