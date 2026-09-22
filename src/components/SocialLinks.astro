@@ -10,23 +10,28 @@ interface Props {
 }
 
 const { handle, email, whatsapp, facebookUrl, instagramUrl } = Astro.props;
+
+const linkClass =
+  'inline-flex items-center justify-center opacity-80 transition hover:opacity-100';
 ---
 
-<div
-  class="flex items-center justify-center gap-6 sm:gap-8 md:gap-10 px-4 py-3 bg-white/70 backdrop-blur-sm rounded-full shadow-sm"
+<nav
+  class="flex items-center justify-center gap-8"
+  aria-label="Contacto y redes"
 >
   <a
     href={facebookUrl}
     target="_blank"
     rel="noopener noreferrer"
     title="Facebook"
+    class={linkClass}
   >
     <img
       src={withBase('/images/icons/face.png')}
       alt="Facebook"
-      class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 hover:opacity-80 transition"
-      width="32"
-      height="32"
+      class="h-6 w-6"
+      width="24"
+      height="24"
     />
   </a>
   <a
@@ -34,13 +39,14 @@ const { handle, email, whatsapp, facebookUrl, instagramUrl } = Astro.props;
     target="_blank"
     rel="noopener noreferrer"
     title="Instagram"
+    class={linkClass}
   >
     <img
       src={withBase('/images/icons/insta.png')}
       alt="Instagram"
-      class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 hover:opacity-80 transition"
-      width="32"
-      height="32"
+      class="h-6 w-6"
+      width="24"
+      height="24"
     />
   </a>
   <a
@@ -48,22 +54,23 @@ const { handle, email, whatsapp, facebookUrl, instagramUrl } = Astro.props;
     target="_blank"
     rel="noopener noreferrer"
     title="WhatsApp"
+    class={linkClass}
   >
     <img
       src={withBase('/images/icons/wsp.png')}
       alt="WhatsApp"
-      class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 hover:opacity-80 transition"
-      width="32"
-      height="32"
+      class="h-6 w-6"
+      width="24"
+      height="24"
     />
   </a>
-  <a href={`mailto:${email}`} title={`Email ${handle}`}>
+  <a href={`mailto:${email}`} title={`Email ${handle}`} class={linkClass}>
     <img
       src={withBase('/images/icons/mail.png')}
       alt="Email"
-      class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 hover:opacity-80 transition"
-      width="32"
-      height="32"
+      class="h-6 w-6"
+      width="24"
+      height="24"
     />
   </a>
-</div>
+</nav>

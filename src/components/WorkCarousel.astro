@@ -21,42 +21,48 @@ const slides = await Promise.all(
   <div class="swiper-wrapper">
     {
       slides.map(({ work, Content }) => (
-        <div class="swiper-slide text-center p-4">
-          <div
-            class:list={[
-              'w-full mx-auto flex items-center justify-center bg-gray-100 rounded-lg shadow-inner',
-              work.data.orientation === 'portrait'
-                ? 'max-w-md h-112'
-                : 'max-w-3xl',
-            ]}
-          >
-            <img
-              src={withBase(work.data.image)}
-              alt={work.data.title}
+        <div class="swiper-slide px-2 pb-12 sm:px-4">
+          <figure class="mx-auto max-w-3xl">
+            <div
               class:list={[
-                'object-contain',
+                'mx-auto flex items-center justify-center bg-accent-soft',
                 work.data.orientation === 'portrait'
-                  ? 'max-h-full max-w-full'
-                  : 'max-w-full h-auto',
+                  ? 'max-w-md h-112'
+                  : 'max-w-3xl',
               ]}
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <h3 class="text-xl font-bold mt-4">{work.data.title}</h3>
-          <p class="text-gray-600 italic">
-            {work.data.technique} / Año {work.data.year}
-          </p>
-          <div class="mt-2 mb-2 text-sm text-justify bg-gray-100/50 backdrop-blur-sm rounded-lg shadow-lg p-4">
-            <Content />
-          </div>
+            >
+              <img
+                src={withBase(work.data.image)}
+                alt={work.data.title}
+                class:list={[
+                  'object-contain',
+                  work.data.orientation === 'portrait'
+                    ? 'max-h-full max-w-full'
+                    : 'h-auto max-w-full',
+                ]}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption class="mt-8 text-center">
+              <h3 class="font-display text-3xl font-medium tracking-tight text-ink">
+                {work.data.title}
+              </h3>
+              <p class="mt-2 text-sm text-ink-muted">
+                {work.data.technique} · {work.data.year}
+              </p>
+              <div class="mx-auto mt-6 max-w-2xl text-left text-sm leading-relaxed text-ink-muted [&_p]:mb-3">
+                <Content />
+              </div>
+            </figcaption>
+          </figure>
         </div>
       ))
     }
   </div>
   <div class="swiper-button-prev" aria-label="Obra anterior"></div>
   <div class="swiper-button-next" aria-label="Obra siguiente"></div>
-  <div class="swiper-pagination mt-12"></div>
+  <div class="swiper-pagination !relative !mt-4 !bottom-0"></div>
 </div>
 
 <script>

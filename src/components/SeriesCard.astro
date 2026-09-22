@@ -9,15 +9,21 @@ interface Props {
 const { title, href, cover, coverAlt = title } = Astro.props;
 ---
 
-<a href={href} class="block">
-  <div class="bg-gray-50 p-4 rounded-lg shadow hover:shadow-lg transition">
-    <h3 class="text-xl font-bold mb-2 text-center">{title}</h3>
-    <img
-      src={cover}
-      alt={coverAlt}
-      class="rounded-md w-full h-48 object-cover"
-      loading="lazy"
-      decoding="async"
-    />
+<a href={href} class="group block">
+  <div class="overflow-hidden border-b border-line pb-4">
+    <div class="overflow-hidden mb-4 aspect-[4/3] bg-accent-soft">
+      <img
+        src={cover}
+        alt={coverAlt}
+        class="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.03] group-hover:opacity-90"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <h3
+      class="font-display text-2xl font-medium tracking-tight text-ink group-hover:text-accent transition-colors"
+    >
+      {title}
+    </h3>
   </div>
 </a>

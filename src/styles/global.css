@@ -2,27 +2,92 @@
 
 @theme {
   --spacing-112: 28rem;
+
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-paper: #f7f7f5;
+  --color-ink: #1c1b1a;
+  --color-ink-muted: #5c5a57;
+  --color-line: #e4e2dc;
+  --color-accent: #3a6b78;
+  --color-accent-soft: #e8f0f2;
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background-color: var(--color-paper);
+  }
+
+  ::selection {
+    background-color: var(--color-accent-soft);
+    color: var(--color-ink);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
+/* Hero entrance */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-animate {
+  animation: hero-rise 0.9s ease-out both;
+}
+
+.hero-animate-delay {
+  animation: hero-rise 0.9s ease-out 0.15s both;
+}
+
+.hero-animate-cta {
+  animation: hero-rise 0.9s ease-out 0.3s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-animate,
+  .hero-animate-delay,
+  .hero-animate-cta {
+    animation: none;
+  }
+}
+
+/* Lightbox */
 #lightbox-modal {
   border: none;
   padding: 1rem;
-  background: rgb(0 0 0 / 0.9);
+  background: rgb(28 27 26 / 0.92);
   color: white;
   max-width: 100vw;
   max-height: 100vh;
   width: 100%;
   height: 100%;
+  transition: opacity 0.25s ease;
 }
 
 #lightbox-modal[open] {
@@ -35,7 +100,17 @@ html {
   background: transparent;
 }
 
+/* Swiper controls — accent, not indigo */
 .work-carousel .swiper-button-prev,
 .work-carousel .swiper-button-next {
-  color: #4f46e5;
+  color: var(--color-accent);
+}
+
+.work-carousel .swiper-pagination-bullet-active {
+  background: var(--color-accent);
+}
+
+.work-carousel .swiper-button-prev::after,
+.work-carousel .swiper-button-next::after {
+  font-size: 1.25rem;
 }

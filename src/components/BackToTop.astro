@@ -1,22 +1,22 @@
 ---
 /**
- * Back-to-top floating button (same visual language as legacy site).
+ * Back-to-top — accent from design tokens, not indigo.
  */
 ---
 
 <button
   id="back-to-top"
   type="button"
-  class="fixed bottom-6 right-6 p-3 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition duration-300 opacity-0 invisible"
+  class="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center border border-line bg-paper text-ink opacity-0 invisible transition duration-300 hover:border-accent hover:text-accent"
   aria-label="Volver arriba"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="h-6 w-6"
+    class="h-5 w-5"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
-    stroke-width="2"
+    stroke-width="1.75"
     aria-hidden="true"
   >
     <path
@@ -45,7 +45,8 @@
     onScroll();
 
     button.addEventListener('click', () => {
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+        .matches;
       window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
   }
