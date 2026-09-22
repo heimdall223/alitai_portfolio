@@ -2,7 +2,7 @@
 
 Esta guía explica cómo agregar o editar series, obras y exhibiciones **sin tocar el código** de layouts o componentes.
 
-La fuente de verdad del contenido está en `src/content/`. Las imágenes van en `public/images/`.
+La fuente de verdad del contenido está en `src/content/`. Las imágenes van en `public/images/` y deben cumplir [IMAGES.md](IMAGES.md) (formato, tamaño y peso) **antes** de subirlas.
 
 Tras cambiar contenido, hace falta un build (`npm run build`) o un push a `main` (GitHub Actions publica el sitio).
 
@@ -28,7 +28,7 @@ El **slug** es el nombre del archivo o carpeta (sin espacios, preferible `snake_
 1. Copiá `src/content/_templates/series.md` a `src/content/series/<slug>.md`.
 2. Creá la carpeta `src/content/works/<slug>/`.
 3. Copiá al menos una obra desde `src/content/_templates/work.md` dentro de esa carpeta.
-4. Subí las imágenes a `public/images/series/<slug>/`.
+4. Subí las imágenes a `public/images/series/<slug>/` (optimizadas según [IMAGES.md](IMAGES.md)).
 5. Completá el frontmatter (entre `---`):
    - `title`, `dateRange`, `technique`, `worksSummary`
    - `cover`: ruta tipo `/images/series/<slug>/portada.jpg`
@@ -47,7 +47,7 @@ Si falta un campo obligatorio, el build **falla** con un mensaje de error (es in
 1. Abrí la carpeta `src/content/works/<slug-serie>/`.
 2. Copiá `_templates/work.md` como `<slug-obra>.md`.
 3. Completá `title`, `technique`, `year`, `image`, `orientation` (`portrait` o `landscape`), `order`.
-4. Poné la imagen en `public/images/...` y usá esa ruta en `image`.
+4. Poné la imagen en `public/images/...` (ver [IMAGES.md](IMAGES.md)) y usá esa ruta en `image`.
 5. Escribí la descripción debajo del frontmatter.
 
 La obra pertenece a la serie por el **nombre de la carpeta padre**.
@@ -58,7 +58,7 @@ La obra pertenece a la serie por el **nombre de la carpeta padre**.
 
 1. Copiá `src/content/_templates/exhibition.md` a `src/content/exhibitions/<slug>.md`.
 2. Completá `title`, `thumb`, `fullImage`, `order`.
-3. Subí el flyer a `public/images/exhibiciones/`.
+3. Subí el flyer a `public/images/exhibiciones/` (ver [IMAGES.md](IMAGES.md)).
 
 En el home, al hacer clic se abre el lightbox con `fullImage`.
 
@@ -72,8 +72,8 @@ Editá `src/content/site/settings.yaml`. No hace falta tocar HTML.
 
 ## Consejos para nombres de archivo
 
-- Evitá espacios y tildes en nombres de imagen cuando puedas (`rey_coco.jpg` es más robusto que `Rey Coco.jpg`).
-- Si ya existen archivos con espacios, la ruta en el Markdown debe coincidir exactamente.
+- Seguí la convención de [IMAGES.md](IMAGES.md): sin espacios ni tildes (`rey_coco.jpg`).
+- Si ya existen archivos con espacios, la ruta en el Markdown debe coincidir exactamente (mejor renombrar cuando puedas).
 
 ---
 

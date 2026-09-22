@@ -67,8 +67,11 @@ alitai_portfolio/
 │   │   └── 404.astro
 │   └── styles/global.css
 ├── .github/workflows/deploy.yml
-├── CONTENT.md
-├── refactoring/refactor_plan.md
+├── docs/
+│   ├── CONTENT.md
+│   ├── IMAGES.md
+│   ├── DOCUMENTACION.md
+│   └── refactoring/refactor_plan.md
 ├── astro.config.mjs
 └── package.json
 ```
@@ -150,7 +153,7 @@ Un `.md` en `exhibitions/` + imágenes en `public/images/exhibiciones/`.
 
 ### Rollback
 
-Volver Pages a “Deploy from a branch” y restaurar HTML legacy desde git history / `refactoring/legacy/` si se conservó.
+Volver Pages a “Deploy from a branch” y restaurar HTML legacy desde git history / `docs/refactoring/legacy/` si se conservó.
 
 ## 7. Alcance v1 (estructura)
 
@@ -191,8 +194,8 @@ Volver Pages a “Deploy from a branch” y restaurar HTML legacy desde git hist
 - [x] `npm run build` genera el sitio con el contenido actual.
 - [x] Se puede agregar una serie solo con archivos de content + imágenes.
 - [ ] Deploy Actions a Pages con `alitai.com.ar` operativo (requiere config en GitHub — ver [CUTOVER.md](CUTOVER.md)).
-- [x] HTML monolítico ya no es la fuente de verdad (archivado en `refactoring/legacy/`).
-- [x] Existe guía clara en español para editores no técnicos (`CONTENT.md`).
+- [x] HTML monolítico ya no es la fuente de verdad (archivado en `docs/refactoring/legacy/`).
+- [x] Existe guía clara en español para editores no técnicos (`docs/CONTENT.md`).
 
 ## 12. Referencias
 

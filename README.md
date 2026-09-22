@@ -5,8 +5,17 @@ Sitio estático del portfolio de **Alicia Isabel Tocino (@Alitai)**.
 - **Stack:** Astro + Content Collections + Tailwind (build) + Swiper
 - **Hosting:** GitHub Pages
 - **URL:** https://alitai.com.ar
-- **Contenido:** `src/content/` — ver [CONTENT.md](CONTENT.md)
-- **Deploy / DNS:** [refactoring/CUTOVER.md](refactoring/CUTOVER.md)
+
+## Documentación
+
+Toda la documentación de mantenimiento vive en [`docs/`](docs/README.md).
+
+| Guía | Descripción |
+|------|-------------|
+| [docs/DOCUMENTACION.md](docs/DOCUMENTACION.md) | Arquitectura, diseño, decisiones y mantenimiento |
+| [docs/CONTENT.md](docs/CONTENT.md) | Cómo agregar/editar series, obras y exhibiciones |
+| [docs/IMAGES.md](docs/IMAGES.md) | Formato, tamaño y peso de imágenes antes de subir |
+| [docs/refactoring/CUTOVER.md](docs/refactoring/CUTOVER.md) | Deploy Pages, DNS, HTTPS, CNAME |
 
 ## Desarrollo local
 
