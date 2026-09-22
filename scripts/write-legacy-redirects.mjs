@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+const BASE = '/alitai_portfolio';
 const slugs = [
   'arquetipos',
   'naturaleza_zen',
@@ -10,7 +11,7 @@ const slugs = [
 ];
 
 for (const slug of slugs) {
-  const target = `/series/${slug}/`;
+  const target = `${BASE}/series/${slug}/`;
   const html = `<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,4 +30,4 @@ for (const slug of slugs) {
   fs.writeFileSync(path.join('public', slug, 'index.html'), html);
 }
 
-console.log(`Wrote redirects for ${slugs.length} series`);
+console.log(`Wrote redirects for ${slugs.length} series (base ${BASE})`);

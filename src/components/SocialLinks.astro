@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../lib/paths';
+
 interface Props {
   handle: string;
   email: string;
@@ -20,7 +22,7 @@ const { handle, email, whatsapp, facebookUrl, instagramUrl } = Astro.props;
     title="Facebook"
   >
     <img
-      src="/images/icons/face.png"
+      src={withBase('/images/icons/face.png')}
       alt="Facebook"
       class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 hover:opacity-80 transition"
       width="32"
@@ -34,7 +36,7 @@ const { handle, email, whatsapp, facebookUrl, instagramUrl } = Astro.props;
     title="Instagram"
   >
     <img
-      src="/images/icons/insta.png"
+      src={withBase('/images/icons/insta.png')}
       alt="Instagram"
       class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 hover:opacity-80 transition"
       width="32"
@@ -48,7 +50,7 @@ const { handle, email, whatsapp, facebookUrl, instagramUrl } = Astro.props;
     title="WhatsApp"
   >
     <img
-      src="/images/icons/wsp.png"
+      src={withBase('/images/icons/wsp.png')}
       alt="WhatsApp"
       class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 hover:opacity-80 transition"
       width="32"
@@ -57,7 +59,7 @@ const { handle, email, whatsapp, facebookUrl, instagramUrl } = Astro.props;
   </a>
   <a href={`mailto:${email}`} title={`Email ${handle}`}>
     <img
-      src="/images/icons/mail.png"
+      src={withBase('/images/icons/mail.png')}
       alt="Email"
       class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 hover:opacity-80 transition"
       width="32"
