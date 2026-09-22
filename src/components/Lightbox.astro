@@ -1,0 +1,64 @@
+---
+/**
+ * Accessible lightbox for exhibition flyers.
+ * Open via .js-open-lightbox[data-full-src]; Escape / backdrop / close button.
+ */
+---
+
+<dialog id="lightbox-modal" aria-label="Imagen ampliada">
+  <form method="dialog" class="absolute top-5 right-8">
+    <button
+      type="submit"
+      class="text-white text-5xl font-bold cursor-pointer transition hover:text-gray-400 leading-none bg-transparent border-0"
+      aria-label="Cerrar"
+    >
+      &times;
+    </button>
+  </form>
+  <img
+    id="modal-image"
+    src=""
+    alt="Imagen ampliada"
+    class="max-w-[90%] max-h-[90%] block m-auto"
+  />
+</dialog>
+
+<script>
+  function initLightbox() {
+    const modal = document.getElementById('lightbox-modal');
+    const modalImage = document.getElementById('modal-image');
+    if (!(modal instanceof HTMLDialogElement) || !(modalImage instanceof HTMLImageElement)) {
+      return;
+    }
+
+    const openButtons = document.querySelectorAll('.js-open-lightbox');
+
+    function openLightbox(fullSrc: string) {
+      modalImage.src = fullSrc;
+      modal.showModal();
+    }
+
+    function closeLightbox() {
+      modal.close();
+      modalImage.src = '';
+    }
+
+    openButtons.forEach((el) => {
+      el.addEventListener('click', () => {
+        const fullSrc = el.getAttribute('data-full-src');
+        if (fullSrc) openLightbox(fullSrc);
+      });
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeLightbox();
+    });
+
+    modal.addEventListener('close', () => {
+      modalImage.src = '';
+    });
+  }
+
+  initLightbox();
+  document.addEventListener('astro:page-load', initLightbox);
+</script>

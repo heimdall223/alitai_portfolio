@@ -1,0 +1,67 @@
+---
+interface Props {
+  handle: string;
+  email: string;
+  whatsapp: string;
+  facebookUrl: string;
+  instagramUrl: string;
+}
+
+const { handle, email, whatsapp, facebookUrl, instagramUrl } = Astro.props;
+---
+
+<div
+  class="flex items-center justify-center gap-6 sm:gap-8 md:gap-10 px-4 py-3 bg-white/70 backdrop-blur-sm rounded-full shadow-sm"
+>
+  <a
+    href={facebookUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Facebook"
+  >
+    <img
+      src="/images/icons/face.png"
+      alt="Facebook"
+      class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 hover:opacity-80 transition"
+      width="32"
+      height="32"
+    />
+  </a>
+  <a
+    href={instagramUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Instagram"
+  >
+    <img
+      src="/images/icons/insta.png"
+      alt="Instagram"
+      class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 hover:opacity-80 transition"
+      width="32"
+      height="32"
+    />
+  </a>
+  <a
+    href={`https://wa.me/${whatsapp}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    title="WhatsApp"
+  >
+    <img
+      src="/images/icons/wsp.png"
+      alt="WhatsApp"
+      class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 hover:opacity-80 transition"
+      width="32"
+      height="32"
+    />
+  </a>
+  <a href={`mailto:${email}`} title={`Email ${handle}`}>
+    <img
+      src="/images/icons/mail.png"
+      alt="Email"
+      class="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 hover:opacity-80 transition"
+      width="32"
+      height="32"
+    />
+  </a>
+</div>

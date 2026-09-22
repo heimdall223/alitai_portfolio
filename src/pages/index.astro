@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SeriesCard from '../components/SeriesCard.astro';
+import ExhibitionCard from '../components/ExhibitionCard.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import Lightbox from '../components/Lightbox.astro';
+import BackToTop from '../components/BackToTop.astro';
+import {
+  getExhibitions,
+  getPublishedSeries,
+  getSiteSettings,
+} from '../lib/content';
+
+const settings = await getSiteSettings();
+const seriesList = await getPublishedSeries();
+const exhibitions = await getExhibitions();
+---
+
+<BaseLayout>
+  <header class="bg-gray-100 text-center py-10">
+    <h1 class="text-4xl font-bold">{settings.handle}</h1>
+    <h2 class="text-2xl">{settings.name}</h2>
+    <p class="text-lg italic text-gray-600">{settings.role}</p>
+  </header>
+
+  <section class="flex justify-center py-10 bg-white">
+    <img
+      src={settings.portrait}
+      alt={settings.portraitAlt}
+      class="max-w-lg w-full rounded-lg shadow-lg"
+      width="512"
+      height="640"
+      decoding="async"
+    />
+  </section>
+
+  <section class="py-12 px-6 bg-gray-50">
+    <h2 class="text-3xl font-semibold text-center mb-6">Sobre mí</h2>
+    <div class="max-w-3xl mx-auto text-justify leading-relaxed mb-8">
+      <p>{settings.bio}</p>
+    </div>
+    <SocialLinks
+      handle={settings.handle}
+      email={settings.email}
+      whatsapp={settings.whatsapp}
+      facebookUrl={settings.facebookUrl}
+      instagramUrl={settings.instagramUrl}
+    />
+  </section>
+
+  <section class="py-12 px-6 bg-white" id="trabajos">
+    <h2 class="text-3xl font-semibold text-center mb-10">Trabajos</h2>
+    <div class="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+      {
+        seriesList.map((entry) => (
+          <SeriesCard
+            title={entry.data.title}
+            href={`/series/${entry.id}/`}
+            cover={entry.data.cover}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="py-12 px-6 bg-gray-50" id="exhibiciones">
+    <h2 class="text-3xl font-semibold text-center mb-10">Exhibiciones</h2>
+    <div class="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+      {
+        exhibitions.map((entry) => (
+          <ExhibitionCard
+            title={entry.data.title}
+            thumb={entry.data.thumb}
+            fullImage={entry.data.fullImage}
+          />
+        ))
+      }
+    </div>
+    <Lightbox />
+  </section>
+
+  <footer class="bg-gray-100 text-center py-6 mt-12">
+    <p class="text-sm text-gray-500">
+      &copy; {settings.copyrightYear} @Alitai - Todos los derechos reservados
+    </p>
+  </footer>
+
+  <BackToTop />
+</BaseLayout>
