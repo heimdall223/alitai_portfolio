@@ -1,0 +1,59 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkCarousel from '../../components/WorkCarousel.astro';
+import {
+  getPublishedSeries,
+  getSiteSettings,
+  getWorksForSeries,
+} from '../../lib/content';
+
+export async function getStaticPaths() {
+  const seriesList = await getPublishedSeries();
+  return seriesList.map((entry) => ({
+    params: { slug: entry.id },
+    props: { series: entry },
+  }));
+}
+
+const { series } = Astro.props;
+const works = await getWorksForSeries(series.id);
+const { Content } = await render(series);
+const settings = await getSiteSettings();
+const handle = settings.handle;
+---
+
+<BaseLayout
+  title={`${series.data.title} - ${handle}`}
+  description={series.data.description}
+  ogImage={series.data.cover}
+>
+  <header class="bg-gray-100 text-center py-6 shadow">
+    <h1 class="text-3xl font-bold">"{series.data.title}"</h1>
+    <p class="text-gray-600 italic">por {handle}</p>
+  </header>
+
+  <section class="max-w-3xl mx-auto py-10 px-6 text-center">
+    <div class="text-lg font-semibold mb-4 text-left space-y-1">
+      <p><strong>Fecha:</strong> {series.data.dateRange}</p>
+      <p><strong>Técnica:</strong> {series.data.technique}</p>
+      <p><strong>Obras:</strong> {series.data.worksSummary}</p>
+    </div>
+    <div class="leading-relaxed text-justify prose max-w-none">
+      <Content />
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto py-10 px-6">
+    <h2 class="text-2xl font-semibold text-center mb-6">Obras de la serie</h2>
+    {works.length > 0 ? (
+      <WorkCarousel works={works} />
+    ) : (
+      <p class="text-center text-gray-600">Próximamente.</p>
+    )}
+  </section>
+
+  <footer class="bg-gray-100 text-center py-6 mt-12">
+    <a href="/" class="text-blue-600 hover:underline">← Volver al portfolio</a>
+  </footer>
+</BaseLayout>
