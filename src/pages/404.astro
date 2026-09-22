@@ -4,9 +4,16 @@ import { withBase } from '../lib/paths';
 ---
 
 <BaseLayout title="Página no encontrada - @Alitai">
-  <main class="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center">
-    <h1 class="text-4xl font-bold mb-4">404</h1>
-    <p class="text-gray-600 mb-8">No encontramos esta página.</p>
-    <a href={withBase('/')} class="text-blue-600 hover:underline">← Volver al portfolio</a>
+  <main
+    class="flex min-h-[70vh] flex-col items-center justify-center px-6 text-center"
+  >
+    <p class="font-display text-6xl font-medium text-ink">404</p>
+    <p class="mt-4 text-ink-muted">No encontramos esta página.</p>
+    <a
+      href={withBase('/')}
+      class="mt-8 text-sm text-accent transition hover:underline"
+    >
+      ← Volver al portfolio
+    </a>
   </main>
 </BaseLayout>

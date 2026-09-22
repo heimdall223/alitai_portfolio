@@ -8,20 +8,26 @@ interface Props {
 const { title, thumb, fullImage } = Astro.props;
 ---
 
-<div class="bg-gray-50 p-4 rounded-lg shadow hover:shadow-lg transition">
-  <h3 class="text-xl font-bold mb-2 text-center">{title}</h3>
+<div class="border-b border-line pb-4">
   <button
     type="button"
-    class="js-open-lightbox block w-full cursor-pointer p-0 border-0 bg-transparent"
+    class="js-open-lightbox group block w-full cursor-pointer border-0 bg-transparent p-0 text-left"
     data-full-src={fullImage}
     aria-label={`Ampliar flyer: ${title}`}
   >
-    <img
-      src={thumb}
-      alt={title}
-      class="rounded-md w-full h-48 object-cover"
-      loading="lazy"
-      decoding="async"
-    />
+    <div class="mb-4 aspect-[4/3] overflow-hidden bg-accent-soft">
+      <img
+        src={thumb}
+        alt={title}
+        class="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.03] group-hover:opacity-90"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <h3
+      class="font-display text-2xl font-medium tracking-tight text-ink group-hover:text-accent transition-colors"
+    >
+      {title}
+    </h3>
   </button>
 </div>

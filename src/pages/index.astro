@@ -15,74 +15,123 @@ import { withBase } from '../lib/paths';
 const settings = await getSiteSettings();
 const seriesList = await getPublishedSeries();
 const exhibitions = await getExhibitions();
+const portraitUrl = withBase(settings.portrait);
 ---
 
 <BaseLayout>
-  <header class="bg-gray-100 text-center py-10">
-    <h1 class="text-4xl font-bold">{settings.handle}</h1>
-    <h2 class="text-2xl">{settings.name}</h2>
-    <p class="text-lg italic text-gray-600">{settings.role}</p>
-  </header>
-
-  <section class="flex justify-center py-10 bg-white">
+  <!-- HERO: marca + retrato full-bleed -->
+  <section
+    class="relative flex min-h-[100svh] items-end overflow-hidden bg-ink"
+    aria-label="Portada"
+  >
     <img
-      src={withBase(settings.portrait)}
-      alt={settings.portraitAlt}
-      class="max-w-lg w-full rounded-lg shadow-lg"
-      width="512"
-      height="640"
+      src={portraitUrl}
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover object-center"
+      width="1600"
+      height="2000"
       decoding="async"
+      fetchpriority="high"
     />
-  </section>
-
-  <section class="py-12 px-6 bg-gray-50">
-    <h2 class="text-3xl font-semibold text-center mb-6">Sobre mí</h2>
-    <div class="max-w-3xl mx-auto text-justify leading-relaxed mb-8">
-      <p>{settings.bio}</p>
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/35 to-ink/20"
+      aria-hidden="true"
+    >
     </div>
-    <SocialLinks
-      handle={settings.handle}
-      email={settings.email}
-      whatsapp={settings.whatsapp}
-      facebookUrl={settings.facebookUrl}
-      instagramUrl={settings.instagramUrl}
-    />
-  </section>
-
-  <section class="py-12 px-6 bg-white" id="trabajos">
-    <h2 class="text-3xl font-semibold text-center mb-10">Trabajos</h2>
-    <div class="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
-      {
-        seriesList.map((entry) => (
-          <SeriesCard
-            title={entry.data.title}
-            href={withBase(`/series/${entry.id}/`)}
-            cover={withBase(entry.data.cover)}
-          />
-        ))
-      }
+    <div class="relative z-10 w-full px-6 pb-16 pt-32 sm:px-10 sm:pb-20 md:px-16">
+      <p
+        class="hero-animate font-display text-5xl font-medium leading-none tracking-tight text-paper sm:text-6xl md:text-7xl lg:text-8xl"
+      >
+        {settings.handle}
+      </p>
+      <p
+        class="hero-animate-delay mt-4 max-w-xl font-sans text-base text-paper/85 sm:text-lg"
+      >
+        {settings.name} · {settings.role}
+      </p>
+      <a
+        href="#trabajos"
+        class="hero-animate-cta mt-8 inline-block border border-paper/40 px-6 py-3 text-sm font-medium tracking-wide text-paper transition hover:border-paper hover:bg-paper/10"
+      >
+        Ver trabajos
+      </a>
     </div>
   </section>
 
-  <section class="py-12 px-6 bg-gray-50" id="exhibiciones">
-    <h2 class="text-3xl font-semibold text-center mb-10">Exhibiciones</h2>
-    <div class="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
-      {
-        exhibitions.map((entry) => (
-          <ExhibitionCard
-            title={entry.data.title}
-            thumb={withBase(entry.data.thumb)}
-            fullImage={withBase(entry.data.fullImage)}
-          />
-        ))
-      }
+  <!-- BIO -->
+  <section class="border-b border-line px-6 py-20 sm:px-10 md:px-16" id="sobre-mi">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="font-display text-4xl font-medium tracking-tight text-ink sm:text-5xl">
+        Sobre mí
+      </h2>
+      <p class="mt-8 text-base leading-relaxed text-ink-muted sm:text-lg">
+        {settings.bio}
+      </p>
+      <div class="mt-12">
+        <SocialLinks
+          handle={settings.handle}
+          email={settings.email}
+          whatsapp={settings.whatsapp}
+          facebookUrl={settings.facebookUrl}
+          instagramUrl={settings.instagramUrl}
+        />
+      </div>
     </div>
-    <Lightbox />
   </section>
 
-  <footer class="bg-gray-100 text-center py-6 mt-12">
-    <p class="text-sm text-gray-500">
-      &copy; {settings.copyrightYear} @Alitai - Todos los derechos reservados
+  <!-- TRABAJOS -->
+  <section class="px-6 py-20 sm:px-10 md:px-16" id="trabajos">
+    <div class="mx-auto max-w-5xl">
+      <h2 class="font-display text-4xl font-medium tracking-tight text-ink sm:text-5xl">
+        Trabajos
+      </h2>
+      <p class="mt-3 max-w-xl text-ink-muted">
+        Series pictóricas. Elegí una para ver las obras.
+      </p>
+      <div class="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          seriesList.map((entry) => (
+            <SeriesCard
+              title={entry.data.title}
+              href={withBase(`/series/${entry.id}/`)}
+              cover={withBase(entry.data.cover)}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- EXHIBICIONES -->
+  <section
+    class="border-t border-line bg-accent-soft/40 px-6 py-20 sm:px-10 md:px-16"
+    id="exhibiciones"
+  >
+    <div class="mx-auto max-w-5xl">
+      <h2 class="font-display text-4xl font-medium tracking-tight text-ink sm:text-5xl">
+        Exhibiciones
+      </h2>
+      <p class="mt-3 max-w-xl text-ink-muted">
+        Tocá un flyer para ampliarlo.
+      </p>
+      <div class="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          exhibitions.map((entry) => (
+            <ExhibitionCard
+              title={entry.data.title}
+              thumb={withBase(entry.data.thumb)}
+              fullImage={withBase(entry.data.fullImage)}
+            />
+          ))
+        }
+      </div>
+      <Lightbox />
+    </div>
+  </section>
+
+  <footer class="border-t border-line px-6 py-10 text-center">
+    <p class="text-sm text-ink-muted">
+      &copy; {settings.copyrightYear} @Alitai — Todos los derechos reservados
     </p>
   </footer>
 

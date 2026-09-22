@@ -1,7 +1,6 @@
 ---
 /**
  * Accessible lightbox for exhibition flyers.
- * Open via .js-open-lightbox[data-full-src]; Escape / backdrop / close button.
  */
 ---
 
@@ -9,7 +8,7 @@
   <form method="dialog" class="absolute top-5 right-8">
     <button
       type="submit"
-      class="text-white text-5xl font-bold cursor-pointer transition hover:text-gray-400 leading-none bg-transparent border-0"
+      class="border-0 bg-transparent text-4xl font-display leading-none text-paper cursor-pointer transition hover:text-accent-soft"
       aria-label="Cerrar"
     >
       &times;
@@ -19,7 +18,7 @@
     id="modal-image"
     src=""
     alt="Imagen ampliada"
-    class="max-w-[90%] max-h-[90%] block m-auto"
+    class="max-h-[90%] max-w-[90%] m-auto block"
   />
 </dialog>
 
@@ -27,7 +26,10 @@
   function initLightbox() {
     const modal = document.getElementById('lightbox-modal');
     const modalImage = document.getElementById('modal-image');
-    if (!(modal instanceof HTMLDialogElement) || !(modalImage instanceof HTMLImageElement)) {
+    if (
+      !(modal instanceof HTMLDialogElement) ||
+      !(modalImage instanceof HTMLImageElement)
+    ) {
       return;
     }
 
