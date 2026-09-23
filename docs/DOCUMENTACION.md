@@ -389,8 +389,8 @@ npm run preview  # sirve dist/
 
 ### Dominio
 - `public/CNAME` = `alitai.com.ar`
-- DNS del registrador: registros **A** del apex a IPs de GitHub Pages (ver docs oficiales actuales).
-- **Enforce HTTPS** en Settings → Pages solo cuando GitHub valide el dominio (si dice “Unavailable… domain not properly configured”, es DNS/certificado, no Astro). Detalle en [`refactoring/CUTOVER.md`](refactoring/CUTOVER.md).
+- DNS vía **Cloudflare** (proxy naranja delante de GitHub Pages). El HTTPS lo termina Cloudflare; el mensaje de Enforce HTTPS gris en Pages es **esperado**.
+- Detalle, checklist SSL y alternativa “Pages puro”: [`refactoring/CUTOVER.md`](refactoring/CUTOVER.md).
 
 ### Orden mental al publicar
 1. Cambiar contenido o código.
@@ -424,6 +424,7 @@ npm run preview  # sirve dist/
 | Contenido | Markdown + YAML + Zod | Escalable y validado; la artista debe seguir plantillas o contar con ayuda técnica |
 | Estilos | Tailwind 4 (Vite plugin), no CDN Play | CSS purged y predecible; no compilar Tailwind en el browser del visitante |
 | Hosting | GitHub Pages + Actions | Mismo proveedor que antes; requiere Node en CI y Settings → Actions |
+| Edge DNS/TLS | Cloudflare (proxy) delante de Pages | CDN + HTTPS en el edge; Enforce HTTPS de GitHub queda deshabilitado a propósito |
 | Carrusel | Swiper | UX de series conocida; dependencia extra en cliente en páginas de serie |
 | Imágenes v1 | `public/images` sin pipeline WebP | Simple; peso alto (~12 MB histórico) → deuda fase 1.5 |
 | `base` | `/` + dominio custom | Correcto para `alitai.com.ar`; project URL `github.io/repo` no es canónica |
@@ -468,7 +469,7 @@ Superficie pequeña (sitio estático). Prioridades típicas en GitHub:
 - Aprobación de workflows en PRs de forks (contribuidores externos).
 - Allowlist de actions (`actions/*`) o política consciente; no “solo org” (rompería `actions/checkout`).
 - No commitear secretos; `.env` ignorado.
-- HTTPS en el dominio cuando GitHub lo habilite.
+- HTTPS en el dominio vía Cloudflare (Always Use HTTPS / Full SSL); no depender del checkbox Enforce HTTPS de Pages.
 - Datos de contacto en el sitio son **públicos a propósito**.
 
 Un CMS visual futuro implicaría auth, uploads y más hardening.
@@ -483,7 +484,7 @@ Un CMS visual futuro implicaría auth, uploads y más hardening.
 | Build falla en Zod | Frontmatter incompleto | Mensaje de Astro/Zod; comparar con `_templates/` |
 | Serie sin obras | Carpeta `works/<slug>` ≠ id de la serie | Nombres de carpetas |
 | Action rojo | Node/`npm ci`/build | Log de Actions |
-| Enforce HTTPS gris | DNS/certificado Pages | A records, CAA, proxy CDN; `CUTOVER.md` |
+| Enforce HTTPS gris (`domain is not properly configured`) | Normal con Cloudflare proxy | No es fallo del sitio; ver `CUTOVER.md` (SSL en Cloudflare). Solo arreglar DNS Pages si se quiere el checkbox de GitHub |
 | `github.io/.../alitai_portfolio` feo | Esperado con `base: '/'` | Usar `alitai.com.ar` |
 
 ---

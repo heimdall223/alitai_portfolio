@@ -11,18 +11,43 @@ La URL `https://heimdall223.github.io/alitai_portfolio/` puede verse sin estilos
 ## Deploy
 
 1. Repo → **Settings** → **Pages** → Source: **GitHub Actions**
-2. Custom domain: `alitai.com.ar` + Enforce HTTPS cuando el certificado esté listo
+2. Custom domain: `alitai.com.ar`
 3. Push a `main` → workflow **Deploy to GitHub Pages**
 
 ## Si el dominio muestra texto sin CSS
 
 Causa típica: el build se publicó con `base: '/alitai_portfolio/'` mientras el dominio sirve en la raíz. Solución: `base: '/'`, `site: 'https://alitai.com.ar'`, redeploy.
 
-## DNS (referencia)
+## DNS y HTTPS (Cloudflare delante de Pages)
 
-Apex `alitai.com.ar` → registros **A** a las IPs de GitHub Pages (ver [docs](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)).
+**Decisión vigente:** el apex usa **Cloudflare** (NS `*.ns.cloudflare.com`) con **proxy activo** (nube naranja). En DNS público el dominio resuelve a IPs de Cloudflare, no a las A/AAAA de GitHub Pages.
 
-Opcional `www` → CNAME a `heimdall223.github.io`.
+| Capa | Rol |
+|------|-----|
+| Cloudflare (edge) | TLS hacia el visitante, caché/CDN, redirect HTTP→HTTPS |
+| GitHub Pages | Origen estático (`CNAME` / deploy Actions) |
+
+### Enforce HTTPS en GitHub
+
+En Settings → Pages puede aparecer:
+
+> Enforce HTTPS — Unavailable for your site because your domain is not properly configured to support HTTPS (`alitai.com.ar`)
+
+**Es esperado** con proxy naranja. GitHub solo emite su certificado Let’s Encrypt (y habilita ese checkbox) si el apex resuelve a *sus* IPs. Con Cloudflare delante, el HTTPS lo termina Cloudflare; el sitio sigue siendo seguro si SSL/TLS está bien configurado allí.
+
+Checklist Cloudflare (mantener así):
+
+- SSL/TLS: **Full (strict)** preferible; como mínimo **Full** (evitar Flexible).
+- **Always Use HTTPS** activado.
+
+### Alternativa (si algún día se quiere el checkbox de GitHub)
+
+1. En Cloudflare: registros del apex en **DNS only** (nube gris), o sacar el proxy.
+2. Apex → registros **A** (y opcionalmente **AAAA**) a las IPs actuales de [GitHub Pages](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
+3. Opcional `www` → CNAME a `heimdall223.github.io` (también DNS only).
+4. Esperar validación en Settings → Pages → activar **Enforce HTTPS**.
+
+**Trade-off de la decisión actual:** simplicidad + CDN en el edge; no usar Enforce HTTPS de GitHub.
 
 ## Rollback
 
